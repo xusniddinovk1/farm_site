@@ -10,6 +10,7 @@ class VeterinaryDrugs(models.Model):
     animals = models.ManyToManyField(Animal, related_name='veterinary_drugs')
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
+    image = models.ImageField(upload_to='drugs/')
     structure = models.CharField(max_length=150, null=True, blank=True)
     instruction = models.TextField()
     dosage = models.TextField()
@@ -24,6 +25,8 @@ class VeterinaryDrugs(models.Model):
 
     class Meta:
         ordering = ['title']
+        verbose_name = 'Veterinary Drug'
+        verbose_name_plural = 'Veterinary Drugs'
 
 
 class Vaccine(models.Model):
@@ -33,6 +36,7 @@ class Vaccine(models.Model):
     for_what = models.CharField(max_length=150, null=True, blank=True)
     structure = models.TextField()
     animals = models.ManyToManyField(Animal, related_name='vaccines')
+    image = models.ImageField(upload_to='vaccines/')
     manufacturer = models.CharField(max_length=150, null=True, blank=True)
     drug = models.TextField()
     usage = models.TextField()
@@ -47,3 +51,5 @@ class Vaccine(models.Model):
 
     class Meta:
         ordering = ['title']
+        verbose_name = 'Vaccine'
+        verbose_name_plural = 'Vaccines'
