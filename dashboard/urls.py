@@ -4,8 +4,8 @@ from .views import *
 
 urlpatterns = [
     path('', home_page, name='home_page'),
-    path('login/', login_page, name='login'),
-    path('logout/', logout_page, name='logout'),
+    path('login/', login_page, name='login_page'),
+    path('logout/', logout_page, name='logout_page'),
 
     # Partner
     path('partners/', views.PartnerListView.as_view(), name='partner_list'),

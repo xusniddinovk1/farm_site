@@ -28,7 +28,7 @@ def login_page(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect("main_dashboard")
+            return redirect("home_page")
     return render(request, "dashboard/login.html")
 
 
@@ -55,7 +55,38 @@ def billing_view(request):
 
 @login_required_decorator
 def home_page(request):
-    return render(request, 'dashboard/index.html', )
+    aminoacids = Aminoacid.objects.all()
+    animals = Animal.objects.all()
+    categories = Category.objects.all()
+    cleaning_products = CleaningProducts.objects.all()
+    equipments = Equipment.objects.all()
+    foods = Food.objects.all()
+    photos = Gallery.objects.all()
+    manufacturing = Manufacturing.objects.all()
+    news = News.objects.all()
+    paints = Paint.objects.all()
+    vaccines = Vaccine.objects.all()
+    veterinaries = VeterinaryDrugs.objects.all()
+    vitamins = VitaminsMinerals.objects.all()
+
+    ctx = {
+        "counts": {
+            "aminoacids": len(aminoacids),
+            "educations": len(animals),
+            "activities": len(categories),
+            "hotels": len(cleaning_products),
+            "rest_area": len(equipments),
+            "foods": len(foods),
+            "photos": len(photos),
+            "manufacturing": len(manufacturing),
+            "news": len(news),
+            "paints": len(paints),
+            "vaccines": len(vaccines),
+            "veterinaries": len(veterinaries),
+            "vitamins": len(vitamins),
+        }
+    }
+    return render(request, 'dashboard/index.html', ctx)
 
 
 # --- Partner Views ---
