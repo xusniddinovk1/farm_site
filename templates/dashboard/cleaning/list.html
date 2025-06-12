@@ -1,0 +1,75 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<div class="page-container">
+    {% include 'dashboard/userbar.html' %}
+
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+
+                <div class="overview-wrap">
+                    <h2 class="title-1">Cleaning Products</h2>
+                    <a class="au-btn au-btn-icon au-btn--blue" href="{% url 'cleaningproduct_create' %}">
+                        <i class="zmdi zmdi-plus"></i> Add
+                    </a>
+                </div>
+                <br>
+
+                <div class="table-responsive m-b-40">
+                    <table class="table table-borderless table-data3">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Image</th>
+                                <th>Title</th>
+                                <th>Slug</th>
+                                <th>Category</th>
+                                <th>For What</th>
+                                <th>Animals</th>
+                                <th>Manufacturer</th>
+                                <th>Packaging</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in cleaningproducts %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td><img src="{{ product.image.url }}" style="width: 80px; height: auto;"></td>
+                                <td>{{ product.title }}</td>
+                                <td>{{ product.slug }}</td>
+                                <td>{{ product.category.title }}</td>
+                                <td>{{ product.for_what }}</td>
+                                <td>
+                                    {% for animal in product.animal.all %}
+                                        {{ animal.name }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>{{ product.manufacturer }}</td>
+                                <td>{{ product.packaging }}</td>
+                                <td>
+                                    <div class="table-data-feature">
+                                        <a href="{% url 'cleaningproduct_edit' pk=product.id %}" class="item" title="Edit">
+                                            <i class="zmdi zmdi-edit text-warning"></i>
+                                        </a>
+                                        <a href="{% url 'cleaningproduct_delete' pk=product.id %}" class="item" title="Delete">
+                                            <i class="zmdi zmdi-delete text-danger"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="10">No cleaning products found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

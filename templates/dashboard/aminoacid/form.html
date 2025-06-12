@@ -1,0 +1,89 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<div class="page-container">
+    {% include 'dashboard/userbar.html' %}
+
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Amino Acid</strong>
+                            </div>
+                            <div class="card-body card-block">
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">Category</label>
+                                        {{ form.category }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">For What</label>
+                                        {{ form.for_what }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">Animals</label>
+                                        {{ form.animal }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">Title</label>
+                                        {{ form.title }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">Slug</label>
+                                        {{ form.slug }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">Image</label>
+                                        {{ form.image }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">Manufacturer</label>
+                                        {{ form.manufacturer }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">Effect</label>
+                                        {{ form.effect }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">Instruction</label>
+                                        {{ form.instruction }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">Advantages</label>
+                                        {{ form.advantages }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">Preparation</label>
+                                        {{ form.preparation }}
+                                    </div>
+
+                                    <button type="submit" class="btn {% if form.instance.pk %}btn-warning{% else %}btn-success{% endif %} btn-md">
+                                        {% if form.instance.pk %}Save{% else %}Add{% endif %}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

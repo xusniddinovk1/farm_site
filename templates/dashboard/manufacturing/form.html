@@ -1,0 +1,50 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<div class="page-container">
+    <!-- HEADER DESKTOP -->
+    {% include 'dashboard/userbar.html' %}
+    <!-- HEADER DESKTOP -->
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Manufacturing</strong>
+                            </div>
+                            <div class="card-body card-block">
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label class="form-control-label">Title</label>
+                                        {{ form.title }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label">Context</label>
+                                        {{ form.context }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control-label">Image</label>
+                                        {{ form.image }}
+                                    </div>
+
+                                    {% if form.instance.pk %}
+                                    <button type="submit" class="btn btn-warning btn-md">Save</button>
+                                    {% else %}
+                                    <button type="submit" class="btn btn-success btn-md">Add</button>
+                                    {% endif %}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MAIN CONTENT -->
+</div>
+{% endblock %}

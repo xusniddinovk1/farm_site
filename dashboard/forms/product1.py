@@ -13,7 +13,7 @@ class CleaningProductsForm(forms.ModelForm):
         widgets = {
             'category': forms.Select(attrs={'class': 'form-control'}),
             'for_what': forms.TextInput(
-                attrs={'placeholder': 'Enter what this product is for', 'class': 'form-control'}),
+                attrs={'placeholder': 'Enter what this our_team is for', 'class': 'form-control'}),
             'animal': forms.SelectMultiple(attrs={'class': 'form-control'}),
             'manufacturer': forms.TextInput(attrs={'placeholder': 'Enter manufacturer', 'class': 'form-control'}),
             'title': forms.TextInput(attrs={'placeholder': 'Enter title', 'class': 'form-control'}),

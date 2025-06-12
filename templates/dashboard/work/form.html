@@ -1,0 +1,54 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<div class="page-container">
+    {% include 'dashboard/userbar.html' %}
+
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Work</strong>
+                            </div>
+                            <div class="card-body card-block">
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">Title</label>
+                                        {{ form.title }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">Slug</label>
+                                        {{ form.slug }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">Image</label>
+                                        {{ form.image }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">Context</label>
+                                        {{ form.context }}
+                                    </div>
+
+                                    <button type="submit" class="btn {% if form.instance.pk %}btn-warning{% else %}btn-success{% endif %} btn-md">
+                                        {% if form.instance.pk %}Save{% else %}Add{% endif %}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

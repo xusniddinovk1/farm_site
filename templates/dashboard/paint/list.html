@@ -1,0 +1,77 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<div class="page-container">
+    {% include 'dashboard/userbar.html' %}
+
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+
+                <div class="overview-wrap">
+                    <h2 class="title-1">Paint List</h2>
+                    <a href="{% url 'paint_create' %}" class="au-btn au-btn-icon au-btn--blue">
+                        <i class="zmdi zmdi-plus"></i> Add
+                    </a>
+                </div>
+                <br>
+
+                <div class="table-responsive m-b-40">
+                    <table class="table table-borderless table-data3">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Image</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Dosage</th>
+                                <th>Animals</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for paint in paints %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>
+                                    {% if paint.image %}
+                                    <img src="{{ paint.image.url }}" alt="{{ paint.title }}" style="width: 80px; height: auto;">
+                                    {% else %}
+                                    No Image
+                                    {% endif %}
+                                </td>
+                                <td>{{ paint.title }}</td>
+                                <td>{{ paint.category.title }}</td>
+                                <td>{{ paint.dosage|truncatechars:50 }}</td>
+                                <td>
+                                    {% for animal in paint.animals.all %}
+                                        {{ animal.name }}{% if not forloop.last %}, {% endif %}
+                                    {% empty %}
+                                        No Animals
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    <div class="table-data-feature">
+                                        <a href="{% url 'paint_edit' pk=paint.id %}" class="item" title="Edit">
+                                            <i class="zmdi zmdi-edit text-warning"></i>
+                                        </a>
+                                        <a href="{% url 'paint_delete' pk=paint.id %}" class="item" title="Delete">
+                                            <i class="zmdi zmdi-delete text-danger"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="7">No paints found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
