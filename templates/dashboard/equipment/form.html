@@ -38,7 +38,8 @@
                                         {{ form.image }}
                                     </div>
 
-                                    <button type="submit" class="btn {% if form.instance.pk %}btn-warning{% else %}btn-success{% endif %} btn-md">
+                                    <button type="submit"
+                                            class="btn {% if form.instance.pk %}btn-warning{% else %}btn-success{% endif %} btn-md">
                                         {% if form.instance.pk %}Save{% else %}Add{% endif %}
                                     </button>
                                 </form>

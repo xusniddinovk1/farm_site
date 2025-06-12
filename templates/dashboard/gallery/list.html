@@ -25,10 +25,12 @@
                     {% for image in gallery %}
                     <div class="col-md-3 mb-4">
                         <div class="card">
-                            <img src="{{ image.image.url }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                            <img src="{{ image.image.url }}" class="card-img-top"
+                                 style="height: 200px; object-fit: cover;">
                             <div class="card-body text-center">
                                 <a href="{% url 'gallery_edit' pk=image.id %}" class="btn btn-warning btn-sm">Edit</a>
-                                <a href="{% url 'gallery_delete' pk=image.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="{% url 'gallery_delete' pk=image.id %}"
+                                   class="btn btn-danger btn-sm">Delete</a>
                             </div>
                         </div>
                     </div>

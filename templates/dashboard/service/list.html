@@ -26,41 +26,43 @@
                         <div class="table-responsive m-b-40">
                             <table class="table table-borderless table-data3">
                                 <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Image</th>
-                                        <th>Title</th>
-                                        <th>Slug</th>
-                                        <th>Context</th>
-                                        <th></th>
-                                    </tr>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Image</th>
+                                    <th>Title</th>
+                                    <th>Slug</th>
+                                    <th>Context</th>
+                                    <th></th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    {% for service in services %}
-                                    <tr>
-                                        <td>{{ forloop.counter }}</td>
-                                        <td>
-                                            <img src="{{ service.image.url }}" alt="{{ service.title }}" style="width:100px; height:auto;">
-                                        </td>
-                                        <td>{{ service.title }}</td>
-                                        <td>{{ service.slug }}</td>
-                                        <td>{{ service.context|truncatechars:100 }}</td>
-                                        <td>
-                                            <div class="table-data-feature">
-                                                <a class="item" href="{% url 'service_edit' pk=service.id %}" title="Edit">
-                                                    <i class="zmdi zmdi-edit text-warning"></i>
-                                                </a>
-                                                <a class="item" href="{% url 'service_delete' pk=service.id %}" title="Delete">
-                                                    <i class="zmdi zmdi-delete text-danger"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    {% empty %}
-                                    <tr>
-                                        <td colspan="6">No services found.</td>
-                                    </tr>
-                                    {% endfor %}
+                                {% for service in services %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>
+                                        <img src="{{ service.image.url }}" alt="{{ service.title }}"
+                                             style="width:100px; height:auto;">
+                                    </td>
+                                    <td>{{ service.title }}</td>
+                                    <td>{{ service.slug }}</td>
+                                    <td>{{ service.context|truncatechars:100 }}</td>
+                                    <td>
+                                        <div class="table-data-feature">
+                                            <a class="item" href="{% url 'service_edit' pk=service.id %}" title="Edit">
+                                                <i class="zmdi zmdi-edit text-warning"></i>
+                                            </a>
+                                            <a class="item" href="{% url 'service_delete' pk=service.id %}"
+                                               title="Delete">
+                                                <i class="zmdi zmdi-delete text-danger"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="6">No services found.</td>
+                                </tr>
+                                {% endfor %}
                                 </tbody>
                             </table>
                         </div>

@@ -19,49 +19,49 @@
                 <div class="table-responsive m-b-40">
                     <table class="table table-borderless table-data3">
                         <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Image</th>
-                                <th>Title</th>
-                                <th>Slug</th>
-                                <th>Category</th>
-                                <th>For What</th>
-                                <th>Animals</th>
-                                <th>Packaging</th>
-                                <th></th>
-                            </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Slug</th>
+                            <th>Category</th>
+                            <th>For What</th>
+                            <th>Animals</th>
+                            <th>Packaging</th>
+                            <th></th>
+                        </tr>
                         </thead>
                         <tbody>
-                            {% for item in vitamins %}
-                            <tr>
-                                <td>{{ forloop.counter }}</td>
-                                <td><img src="{{ item.image.url }}" style="width: 80px; height: auto;"></td>
-                                <td>{{ item.title }}</td>
-                                <td>{{ item.slug }}</td>
-                                <td>{{ item.category.title }}</td>
-                                <td>{{ item.for_what }}</td>
-                                <td>
-                                    {% for animal in item.animal.all %}
-                                        {{ animal.name }}{% if not forloop.last %}, {% endif %}
-                                    {% endfor %}
-                                </td>
-                                <td>{{ item.packaging }}</td>
-                                <td>
-                                    <div class="table-data-feature">
-                                        <a href="{% url 'vitamin_edit' pk=item.id %}" class="item" title="Edit">
-                                            <i class="zmdi zmdi-edit text-warning"></i>
-                                        </a>
-                                        <a href="{% url 'vitamin_delete' pk=item.id %}" class="item" title="Delete">
-                                            <i class="zmdi zmdi-delete text-danger"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            {% empty %}
-                            <tr>
-                                <td colspan="9">No vitamins or minerals found.</td>
-                            </tr>
-                            {% endfor %}
+                        {% for item in vitamins %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td><img src="{{ item.image.url }}" style="width: 80px; height: auto;"></td>
+                            <td>{{ item.title }}</td>
+                            <td>{{ item.slug }}</td>
+                            <td>{{ item.category.title }}</td>
+                            <td>{{ item.for_what }}</td>
+                            <td>
+                                {% for animal in item.animal.all %}
+                                {{ animal.name }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>{{ item.packaging }}</td>
+                            <td>
+                                <div class="table-data-feature">
+                                    <a href="{% url 'vitamin_edit' pk=item.id %}" class="item" title="Edit">
+                                        <i class="zmdi zmdi-edit text-warning"></i>
+                                    </a>
+                                    <a href="{% url 'vitamin_delete' pk=item.id %}" class="item" title="Delete">
+                                        <i class="zmdi zmdi-delete text-danger"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="9">No vitamins or minerals found.</td>
+                        </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>

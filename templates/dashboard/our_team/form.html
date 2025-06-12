@@ -33,7 +33,8 @@
                                     <div class="form-group">
                                         <label class="form-control-label">Image</label><br>
                                         {% if form.instance.image %}
-                                            <img src="{{ form.instance.image.url }}" alt="Current Image" style="width:150px; height:auto; margin-bottom:10px;">
+                                        <img src="{{ form.instance.image.url }}" alt="Current Image"
+                                             style="width:150px; height:auto; margin-bottom:10px;">
                                         {% endif %}
                                         {{ form.image }}
                                     </div>
