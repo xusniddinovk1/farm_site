@@ -1,5 +1,6 @@
 from django.urls import path
 from dashboard.views.manufacturing import *
+from .views.aboutUs import about_us_list, about_us_create, about_us_update, about_us_delete
 from .views.partner import partner_list, partner_create, partner_update, partner_delete, partner_image_list, \
     partner_image_create, partner_image_update, partner_image_delete
 from .views.farm_history import *
@@ -24,6 +25,12 @@ urlpatterns = [
     path('partners/add/', partner_create, name='partner_create'),
     path('partners/<int:pk>/edit/', partner_update, name='partner_edit'),
     path('partners/<int:pk>/delete/', partner_delete, name='partner_delete'),
+
+    # About Us
+    path('aoutus/', about_us_list, name='about_us_list'),
+    path('aboutus/add/', about_us_create, name='about_us_create'),
+    path('aboutus/<int:pk>/edit/', about_us_update, name='about_us_update'),
+    path('aboutus/<int:pk>/delete/', about_us_delete, name='about_us_delete'),
 
     # OurTeam
     path('ourteam/', our_team_list, name='our_team_list'),
@@ -86,7 +93,7 @@ urlpatterns = [
     path('veterinarydrugs/<int:pk>/delete/', veterinary_drugs_delete, name='veterinary-drugs_delete'),
 
     # Vaccine
-    path('vaccine/', vaccine_list(), name='vaccine_list'),
+    path('vaccine/', vaccine_list, name='vaccine_list'),
     path('vaccine/add/', vaccine_create, name='vaccine_create'),
     path('vaccine/<int:pk>/edit/', vaccine_update, name='vaccine_edit'),
     path('vaccine/<int:pk>/delete/', vaccine_delete, name='vaccine_delete'),

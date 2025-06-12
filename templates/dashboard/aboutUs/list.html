@@ -14,7 +14,7 @@
                     <div class="col-md-12">
                         <div class="overview-wrap">
                             <h2 class="title-1">About Us List</h2>
-                            <a class="au-btn au-btn-icon au-btn--blue" href="{% url 'aboutus_create' %}">
+                            <a class="au-btn au-btn-icon au-btn--blue" href="{% url 'about_us_create' %}">
                                 <i class="zmdi zmdi-plus"></i>add</a>
                         </div>
                     </div>
@@ -40,11 +40,11 @@
                                         <td>
                                             <div class="table-data-feature">
                                                 <a class="item" data-toggle="tooltip"
-                                                   href="{% url 'aboutus_edit' pk=about.id %}" title="Edit">
+                                                   href="{% url 'about_us_edit' pk=about.id %}" title="Edit">
                                                     <i class="zmdi zmdi-edit text-warning"></i>
                                                 </a>
                                                 <a class="item" data-toggle="tooltip"
-                                                   href="{% url 'aboutus_delete' pk=about.id %}" title="Delete">
+                                                   href="{% url 'about_us_delete' pk=about.id %}" title="Delete">
                                                     <i class="zmdi zmdi-delete text-danger"></i>
                                                 </a>
                                             </div>
