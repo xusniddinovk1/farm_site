@@ -3,14 +3,14 @@ from core.models.aboutUs import Manufacturing
 from dashboard.forms.aboutUs import ManufacturingForm
 from dashboard.views.views1 import login_required_decorator
 
-@login_required_decorator
 
+@login_required_decorator
 def manufacturing_list(request):
-    manufacturings = Manufacturing.objects.all()
-    return render(request, 'dashboard/manufacturing/list.html', {'manufacturings': manufacturings})
+    manufacturing = Manufacturing.objects.all()
+    return render(request, 'dashboard/manufacturing/list.html', {'manufacturing': manufacturing})
+
 
 @login_required_decorator
-
 def manufacturing_create(request):
     if request.method == 'POST':
         form = ManufacturingForm(request.POST, request.FILES)
@@ -21,8 +21,8 @@ def manufacturing_create(request):
         form = ManufacturingForm()
     return render(request, 'dashboard/manufacturing/form.html', {'form': form})
 
-@login_required_decorator
 
+@login_required_decorator
 def manufacturing_update(request, pk):
     manufacturing = get_object_or_404(Manufacturing, pk=pk)
     if request.method == 'POST':
@@ -34,11 +34,9 @@ def manufacturing_update(request, pk):
         form = ManufacturingForm(instance=manufacturing)
     return render(request, 'dashboard/manufacturing/form.html', {'form': form})
 
-@login_required_decorator
 
+@login_required_decorator
 def manufacturing_delete(request, pk):
     manufacturing = get_object_or_404(Manufacturing, pk=pk)
-    if request.method == 'POST':
-        manufacturing.delete()
-        return redirect('manufacturing_list')
-    return render(request, 'dashboard/manufacturing/form.html', {'object': manufacturing})
+    manufacturing.delete()
+    return redirect('manufacturing_list')

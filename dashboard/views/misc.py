@@ -38,10 +38,8 @@ def category_update(request, pk):
 @login_required_decorator
 def category_delete(request, pk):
     category = get_object_or_404(Category, pk=pk)
-    if request.method == 'POST':
-        category.delete()
-        return redirect('category_list')
-    return render(request, 'dashboard/category/form.html', {'object': category})
+    category.delete()
+    return redirect('category_list')
 
 
 # --- Animal Views ---
@@ -79,7 +77,5 @@ def animal_update(request, pk):
 @login_required_decorator
 def animal_delete(request, pk):
     animal = get_object_or_404(Animal, pk=pk)
-    if request.method == 'POST':
-        animal.delete()
-        return redirect('animal_list')
-    return render(request, 'dashboard/animal/form.html', {'object': animal})
+    animal.delete()
+    return redirect('animal_list')

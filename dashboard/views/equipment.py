@@ -39,7 +39,7 @@ def equipment_update(request, pk):
 def equipments_delete(request, pk):
     equipment = get_object_or_404(Equipment, pk=pk)
     equipment.delete()
-    return redirect('vitaminsminerals_list')
+    return redirect('equipments_list')
 
 
 # --- Paint Views ---

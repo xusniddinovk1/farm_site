@@ -1,12 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from core.models.aboutUs import *
-from core.models.misc import *
-from core.models.product1 import *
-from core.models.product import *
-from core.models.product2 import *
-from core.models.product3 import *
 from dashboard.forms.misc import *
 from dashboard.forms.aboutUs import *
 from dashboard.forms.product2 import *
@@ -93,6 +87,7 @@ def gallery_list(request):
     galleries = Gallery.objects.all()
     return render(request, 'dashboard/gallery/list.html', {'galleries': galleries})
 
+
 @login_required_decorator
 def gallery_create(request):
     if request.method == 'POST':
@@ -103,6 +98,7 @@ def gallery_create(request):
     else:
         form = GalleryForm()
     return render(request, 'dashboard/gallery/form.html', {'form': form})
+
 
 @login_required_decorator
 def gallery_update(request, pk):
@@ -116,11 +112,9 @@ def gallery_update(request, pk):
         form = GalleryForm(instance=gallery)
     return render(request, 'dashboard/gallery/form.html', {'form': form})
 
+
 @login_required_decorator
 def gallery_delete(request, pk):
     gallery = get_object_or_404(Gallery, pk=pk)
-    if request.method == 'POST':
-        gallery.delete()
-        return redirect('gallery_list')
-    return render(request, 'dashboard/gallery/form.html', {'object': gallery})
-
+    gallery.delete()
+    return redirect('gallery_list')

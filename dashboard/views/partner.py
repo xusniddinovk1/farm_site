@@ -2,14 +2,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from dashboard.forms.aboutUs import *
 from dashboard.views.views1 import login_required_decorator
 
-@login_required_decorator
 
+@login_required_decorator
 def partner_list(request):
     partners = Partner.objects.all()
     return render(request, 'dashboard/partner/list.html', {'partners': partners})
 
-@login_required_decorator
 
+@login_required_decorator
 def partner_create(request):
     if request.method == 'POST':
         form = PartnerForm(request.POST)
@@ -20,8 +20,8 @@ def partner_create(request):
         form = PartnerForm()
     return render(request, 'dashboard/partner/form.html', {'form': form})
 
-@login_required_decorator
 
+@login_required_decorator
 def partner_update(request, pk):
     partner = get_object_or_404(Partner, pk=pk)
     if request.method == 'POST':
@@ -33,51 +33,47 @@ def partner_update(request, pk):
         form = PartnerForm(instance=partner)
     return render(request, 'dashboard/partner/form.html', {'form': form})
 
-@login_required_decorator
 
+@login_required_decorator
 def partner_delete(request, pk):
     partner = get_object_or_404(Partner, pk=pk)
-    if request.method == 'POST':
-        partner.delete()
-        return redirect('partner_list')
-    return render(request, 'dashboard/partner/form.html', {'object': partner})
+    partner.delete()
+    return redirect('partner_list')
+
 
 @login_required_decorator
+def partner_image_list(request):
+    partner_images = PartnerImage.objects.all()
+    return render(request, 'dashboard/partner_image/list.html', {'partner_images': partner_images})
 
-def partnerimage_list(request):
-    partnerimages = PartnerImage.objects.all()
-    return render(request, 'dashboard/partner_image/list.html', {'partnerimages': partnerimages})
 
 @login_required_decorator
-
-def partnerimage_create(request):
+def partner_image_create(request):
     if request.method == 'POST':
         form = PartnerImageForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('partnerimage_list')
+            return redirect('partner_image_list')
     else:
         form = PartnerImageForm()
     return render(request, 'dashboard/partner_image/form.html', {'form': form})
 
-@login_required_decorator
 
-def partnerimage_update(request, pk):
-    partnerimage = get_object_or_404(PartnerImage, pk=pk)
+@login_required_decorator
+def partner_image_update(request, pk):
+    partner_image = get_object_or_404(PartnerImage, pk=pk)
     if request.method == 'POST':
-        form = PartnerImageForm(request.POST, request.FILES, instance=partnerimage)
+        form = PartnerImageForm(request.POST, request.FILES, instance=partner_image)
         if form.is_valid():
             form.save()
-            return redirect('partnerimage_list')
+            return redirect('partner_image_list')
     else:
-        form = PartnerImageForm(instance=partnerimage)
+        form = PartnerImageForm(instance=partner_image)
     return render(request, 'dashboard/partner_image/form.html', {'form': form})
 
-@login_required_decorator
 
-def partnerimage_delete(request, pk):
-    partnerimage = get_object_or_404(PartnerImage, pk=pk)
-    if request.method == 'POST':
-        partnerimage.delete()
-        return redirect('partnerimage_list')
-    return render(request, 'dashboard/partner_image/form.html', {'object': partnerimage})
+@login_required_decorator
+def partner_image_delete(request, pk):
+    partner_image = get_object_or_404(PartnerImage, pk=pk)
+    partner_image.delete()
+    return redirect('partner_image_list')

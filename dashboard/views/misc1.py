@@ -76,7 +76,7 @@ def aminoacids_update(request, pk):
 
 
 @login_required_decorator
-def aminoacids_list(request, pk):
+def aminoacids_delete(request, pk):
     aminoacid = get_object_or_404(Aminoacid, pk=pk)
     aminoacid.delete()
     return redirect('aminoacids_list')
